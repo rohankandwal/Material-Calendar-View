@@ -126,13 +126,11 @@ public class CalendarPageAdapter extends PagerAdapter {
         // Count when month is beginning
         int firstDayOfWeek = calendar.getFirstDayOfWeek();
         // If we want to show previous month values
+        int monthBeginningCell = (dayOfWeek < firstDayOfWeek ? 7 : 0) + dayOfWeek - firstDayOfWeek;
 
+        // Subtract a number of beginning days, it will let to load a part of a previous month
+        calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
         if (!mCalendarProperties.shouldHidePreviousMonth()) {
-            int monthBeginningCell = (dayOfWeek < firstDayOfWeek ? 7 : 0) + dayOfWeek - firstDayOfWeek;
-
-            // Subtract a number of beginning days, it will let to load a part of a previous month
-            calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
-
             /*
             Get all days of one page (42 is a number of all possible cells in one page
             (a part of previous month, current month and a part of next month))
@@ -142,12 +140,9 @@ public class CalendarPageAdapter extends PagerAdapter {
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
         } else {
-            // Show only current month value
-
-            // Saving the current month
-            int currentMonth = calendar.get(Calendar.MONTH);
-            // Looping until we come to a new month
-            while (currentMonth == calendar.get(Calendar.MONTH)) {
+            int maxDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+            int cellSize = monthBeginningCell + maxDaysInMonth;
+            while (days.size() < cellSize) {
                 days.add(calendar.getTime());
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
