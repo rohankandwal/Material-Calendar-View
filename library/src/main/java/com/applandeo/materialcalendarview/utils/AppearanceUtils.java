@@ -107,4 +107,8 @@ public final class AppearanceUtils {
         LinearLayout calendarAbbreviationsBar = view.findViewById(R.id.abbreviationsBar);
         calendarAbbreviationsBar.setVisibility(visibility);
     }
+
+    public static void setDividerColor(View view, int dividerColor) {
+        view.findViewById(R.id.divider).setBackgroundColor(dividerColor);
+    }
 }

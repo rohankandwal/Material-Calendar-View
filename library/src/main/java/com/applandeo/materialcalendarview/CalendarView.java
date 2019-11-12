@@ -7,6 +7,7 @@ import androidx.annotation.ColorRes;
 import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,6 +65,7 @@ public class CalendarView extends LinearLayout {
     private ImageButton mForwardButton;
     private ImageButton mPreviousButton;
     private TextView mCurrentMonthLabel;
+    private View mDivider;
     private int mCurrentPage;
     private CalendarViewPager mViewPager;
 
@@ -242,6 +244,12 @@ public class CalendarView extends LinearLayout {
         AppearanceUtils.setForwardButtonImage(getRootView(), mCalendarProperties.getForwardButtonSrc());
     }
 
+    public void setDividerColor(@ColorRes int color) {
+        mCalendarProperties.setDividerColor(color);
+        AppearanceUtils.setDividerColor(getRootView(), mCalendarProperties.getDividerColor());
+    }
+
+
     private void setCalendarRowLayout() {
         if (mCalendarProperties.getEventsEnabled()) {
             mCalendarProperties.setItemLayoutResource(R.layout.calendar_view_day);
@@ -260,6 +268,8 @@ public class CalendarView extends LinearLayout {
         mCurrentMonthLabel = (TextView) findViewById(R.id.currentDateLabel);
 
         mViewPager = (CalendarViewPager) findViewById(R.id.calendarViewPager);
+
+        mDivider = findViewById(R.id.divider);
     }
 
     private void initCalendar() {

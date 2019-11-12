@@ -73,7 +73,7 @@ public class CalendarActivity extends AppCompatActivity {
         Button setDateButton = (Button) findViewById(R.id.setDateButton);
         setDateButton.setOnClickListener(v -> {
             try {
-                Calendar randomCalendar = getRandomCalendar();
+                Calendar randomCalendar = Calendar.getInstance();
                 String text = randomCalendar.getTime().toString();
                 Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
                 calendarView.setDate(randomCalendar);

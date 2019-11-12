@@ -34,7 +34,7 @@ public class CalendarProperties {
     public static final int CALENDAR_SIZE = 2401;
     public static final int FIRST_VISIBLE_PAGE = CALENDAR_SIZE / 2;
 
-    private int mCalendarType, mHeaderColor, mHeaderLabelColor, mSelectionColor, mTodayLabelColor, mTodayColor,
+    private int mCalendarType, mHeaderColor,mDividerColor, mHeaderLabelColor, mSelectionColor, mTodayLabelColor, mTodayColor,
             mDialogButtonsColor, mItemLayoutResource, mDisabledDaysLabelsColor, mHighlightedDaysLabelsColor, mPagesColor,
             mAbbreviationsBarColor, mAbbreviationsLabelsColor, mDaysLabelsColor, mSelectionLabelColor,
             mAnotherMonthsDaysLabelsColor, mHeaderVisibility, mNavigationVisibility, mAbbreviationsBarVisibility, mMaximumDaysRange;
@@ -142,6 +142,14 @@ public class CalendarProperties {
 
     public void setForwardButtonSrc(Drawable forwardButtonSrc) {
         mForwardButtonSrc = forwardButtonSrc;
+    }
+
+    public void setDividerColor(int dividerColor) {
+        mDividerColor = dividerColor;
+    }
+
+    public int getDividerColor() {
+        return mDividerColor;
     }
 
     public int getSelectionColor() {
