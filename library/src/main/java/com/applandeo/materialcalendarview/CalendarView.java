@@ -179,6 +179,9 @@ public class CalendarView extends LinearLayout {
         boolean swipeEnabled = typedArray.getBoolean(R.styleable.CalendarView_swipeEnabled, true);
         mCalendarProperties.setSwipeEnabled(swipeEnabled);
 
+        boolean hidePreviousMonth = typedArray.getBoolean(R.styleable.CalendarView_hidePreviousMonth, false);
+        mCalendarProperties.hidePreviousMonth(hidePreviousMonth);
+
         Drawable previousButtonSrc = typedArray.getDrawable(R.styleable.CalendarView_previousButtonSrc);
         mCalendarProperties.setPreviousButtonSrc(previousButtonSrc);
 

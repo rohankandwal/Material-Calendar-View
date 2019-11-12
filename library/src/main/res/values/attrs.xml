@@ -17,6 +17,7 @@
         <attr name="anotherMonthsDaysLabelsColor" format="color" />
         <attr name="dividerColor" format="color" />
         <attr name="datePicker" format="boolean" />
+        <attr name="hidePreviousMonth" format="boolean" />
         <attr name="eventsEnabled" format="boolean" />
         <attr name="swipeEnabled" format="boolean" />
         <attr name="maximumDaysRange" format="integer" />

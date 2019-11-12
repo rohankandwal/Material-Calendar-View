@@ -41,6 +41,7 @@ public class CalendarProperties {
 
     private boolean mEventsEnabled;
     private boolean mSwipeEnabled;
+    private boolean mHidePreviousMonth;
 
     private Drawable mPreviousButtonSrc, mForwardButtonSrc;
 
@@ -431,5 +432,13 @@ public class CalendarProperties {
 
     public void setTodayColor(int todayColor) {
         mTodayColor = todayColor;
+    }
+
+    public void hidePreviousMonth(boolean hidePreviousMonth) {
+        mHidePreviousMonth = hidePreviousMonth;
+    }
+
+    public boolean shouldHidePreviousMonth() {
+        return mHidePreviousMonth;
     }
 }

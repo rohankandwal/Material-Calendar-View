@@ -1,7 +1,6 @@
 package com.applandeo.materialcalendarview.adapters;
 
 import android.content.Context;
-import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 import static com.applandeo.materialcalendarview.utils.CalendarProperties.CALENDAR_SIZE;
 
@@ -124,19 +125,32 @@ public class CalendarPageAdapter extends PagerAdapter {
 
         // Count when month is beginning
         int firstDayOfWeek = calendar.getFirstDayOfWeek();
-//        int monthBeginningCell = (dayOfWeek < firstDayOfWeek ? 7 : 0) + dayOfWeek - firstDayOfWeek;
+        // If we want to show previous month values
 
-        // Subtract a number of beginning days, it will let to load a part of a previous month
-//        calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
+        if (!mCalendarProperties.shouldHidePreviousMonth()) {
+            int monthBeginningCell = (dayOfWeek < firstDayOfWeek ? 7 : 0) + dayOfWeek - firstDayOfWeek;
 
-        /*
-        Get all days of one page (42 is a number of all possible cells in one page
-        (a part of previous month, current month and a part of next month))
-         */
-        int currentMonth = calendar.get(Calendar.MONTH);
-        while (currentMonth == calendar.get(Calendar.MONTH)) {
-            days.add(calendar.getTime());
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            // Subtract a number of beginning days, it will let to load a part of a previous month
+            calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
+
+            /*
+            Get all days of one page (42 is a number of all possible cells in one page
+            (a part of previous month, current month and a part of next month))
+             */
+            while (days.size() < 42) {
+                days.add(calendar.getTime());
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+        } else {
+            // Show only current month value
+
+            // Saving the current month
+            int currentMonth = calendar.get(Calendar.MONTH);
+            // Looping until we come to a new month
+            while (currentMonth == calendar.get(Calendar.MONTH)) {
+                days.add(calendar.getTime());
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
         }
 
         mPageMonth = calendar.get(Calendar.MONTH) - 1;
